@@ -20,12 +20,13 @@ namespace tetris
         mu::MyRandom myRandom;//My random class declaration.
         tetris::Grid grid;//Grid class declaration.
         //Total frames timer, update frames timer, ect...
-        mu::MyTime totalFrames, updateFrames, drawFrames, fallFrames, flipFrames, forceFrames;
+        mu::MyTime totalFrames, updateFrames, drawFrames, fallFrames, flipFrames, forceFrames, swapFrames;
         //Force frame created to not reset every second even if not in use.
 
         sf::Text text;//Base text for program declared.
         sf::Font font;//Base font for program declared.
-        bool forceFall;//Forcefall boolean: true if user pressed up. Else false. Accessed in event loop.
+        bool forceFall,//Forcefall boolean: true if user pressed up. Else false. Accessed in event loop.
+             swapBool;
 
         void setPrint();//Setup the print for score display.
         void printScore(sf::RenderWindow &window);//Print the score
@@ -39,6 +40,7 @@ namespace tetris
         void fall(bool force = false);//The fall function: executes the Tetris fall procedure. This process will attempt to bind the block into the grid space and cleanup.
         void draw();//The draw function: executes all needed to be drawn functions from game class and grid class.
         void setup();//This function holds the default setups for the window and timers.
+        void swapBlock();//This function swaps the block with a reserve block. If not reserve, simply reserver and create new block.
     public:
         Game(sf::Vector2i gridSize = sf::Vector2i(10,24), bool running = true);//Initializes grid and calls run.
         ~Game();//Prints score to the console on close/gameOver.

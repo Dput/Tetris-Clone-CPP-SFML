@@ -270,8 +270,18 @@ void tetris::Game::checkMove()//Event check for movements.
                 }
                 break;
             case sf::Keyboard::Key::S:
+                if(swapFrames.check())
+                {
+                    swapBlock();
+                    swapFrames.reset();
+                }
                 break;
             case sf::Keyboard::Key::A:
+                if(swapFrames.check())
+                {
+                    swapBlock();
+                    swapFrames.reset();
+                }
                 break;
         }
     }
@@ -347,7 +357,6 @@ void tetris::Game::events()//The events function: should hold all of the event p
 }
 void tetris::Game::updates()//The updates function: should hold all of the updates procedures in the main-loop.
 {
-    createBlock();//Try to create newBlock if none exists: populates current block.
     if(updateFrames.check())
     {
         //Allows users force fall blocks every forceFrame.
@@ -407,6 +416,8 @@ void tetris::Game::fall(bool force)//The fall function: executes the Tetris fall
                 grid.cleanup();//Use the grids cleanup method: Basic Tetris effect and stuff.
                 currentBlock.clear();//Clear our pointers to the block. It's in the hands of the grid now.
                 currentPosition = sf::Vector2<int>(myRandom.get(1,gridSize.x-5),0);//Reset current block position to random.
+                swapBool = true;//Allow swap again. Once per block.
+                createBlock();
             }
         }
     }
@@ -440,11 +451,14 @@ void tetris::Game::setup()//This function holds the default setups for the windo
     flipFrames.reset(5);//Reset timer object for flip to ? action per second.
     forceFrames.reset(2);//Reset timer object for forceFall to ? actions per second.
 
+    swapFrames.reset(1);//Resets timer for swapFrame.
+
     setPrint();
     currentPosition = sf::Vector2<int>(myRandom.get(1,gridSize.x-5),0);
     forceFall = false;
+    swapBool = true;
+    createBlock();
 }
-
 tetris::Game::Game(sf::Vector2i gridSize, bool running)//Initializes grid and calls run.
 {
     //Note: Will default grid size to 10x24 and auto run "run()" unless parameters passed to do different.
@@ -484,4 +498,45 @@ void tetris::Game::run()//This is the run method. Calling this window will creat
         }
     }
 }
+void tetris::Game::swapBlock()
+{
+    static bool inUse = false;
+    static sf::Color reserveColor;
+    static unsigned int reserveState = 0, reserveType = 0;
 
+    if(swapBool)
+    {
+        if(inUse)
+        {
+            //Backup color and state to temp:
+            sf::Color tempColor = block.getFillColor();
+            unsigned int tempState = currentBlockState,
+                         tempType = currentBlockType;
+
+            //Update current color and current state:
+            block.setFillColor(reserveColor);
+            currentBlockState = reserveState;
+            currentBlockType = reserveType;
+
+            //Backup reserve color and reserve state:
+            reserveColor = tempColor;
+            reserveState = tempState;
+            reserveType = tempType;
+
+            //setup the new current block.
+            selectBlockVariations();
+        }
+        else
+        {
+            reserveColor = block.getFillColor();
+            reserveState = currentBlockState;
+            reserveType = currentBlockType;
+            inUse = true;
+            currentBlock.clear();
+            createBlock();
+        }
+        //Reset block position on swapping.
+        currentPosition = sf::Vector2<int>(myRandom.get(1,gridSize.x-5),0);
+        swapBool = false;
+    }
+}

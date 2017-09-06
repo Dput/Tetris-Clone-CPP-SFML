@@ -10,13 +10,20 @@ Controls:
 	Right arrow key: Moves block right.
 	'x' key: Rotates block clockwise.
 	'z' key: Rotates block counter-clockwise.
+	'a' || 's' key: Store/Swich block.
 	
 TODO list:
 
-	'a' || 's' key: Store/Swich block.
-	
+
 	Make game faster as user's score increases.
 	Add sprites, background color, music.
 	
+	Project drop location.
+
+	Show reserved block.
+
+	Show upcomming blocks.
+
+
 	(an more...)
 	
