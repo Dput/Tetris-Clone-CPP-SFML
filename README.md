@@ -2,6 +2,8 @@
 Simple Tetris clone using c++ and SFML.
 SFML version 2.4.2, and compliant to c++ 14.
 
+![Alt text](/screenShots/tetrisClone.PNG?raw=true "Tetris Clone")
+
 Controls:
 
 	Up arrow key: Fast drop.
