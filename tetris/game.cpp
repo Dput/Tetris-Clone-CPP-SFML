@@ -246,6 +246,7 @@ void tetris::Game::checkMove()//Event check for movements.
                 break;
             case sf::Keyboard::Key::Down:
                 ++currentMove.y;
+                fallFrames.reset();
                 break;
             case sf::Keyboard::Key::Left:
                 --currentMove.x;
@@ -390,10 +391,6 @@ bool tetris::Game::tryMove(sf::Vector2<int> newMove)
     if(grid.check(tempPosition,currentBlock))//Test if new Position is valid.
     {
         currentPosition = tempPosition;//Apply the modified change if valid: update position.
-        if(newMove.y != 0)
-        {
-            fallFrames.reset();
-        }
         return true;
     }
     return false;
@@ -432,6 +429,7 @@ void tetris::Game::draw()//The draw function: executes all needed to be drawn fu
         grid.draw(window);//Access grids draw function, passing it the window for access to windows draw.
         if(currentBlock.size()>0)//Only do if current block is valid.
         {
+            projection();
             grid.draw(window,currentBlock,currentPosition);
         }
         printScore(window);//Draws score to bottom left corner.
@@ -457,6 +455,27 @@ void tetris::Game::setup()//This function holds the default setups for the windo
     forceFall = false;
     swapBool = true;
     createBlock();
+}
+void tetris::Game::projection()
+{
+    auto projectionBlock = currentBlock;
+    if(projectionBlock.size() != 0)
+    {
+        //Backup current position and color.
+        sf::Vector2i backupPosition = currentPosition;
+        sf::Color backupColor = block.getFillColor();
+
+        //Set projection model as low as possible.
+        while(tryMove(sf::Vector2i(0,1)));
+
+        //Decrease alpha channel of color to make it ghost like and draw it.
+        block.setFillColor(sf::Color(backupColor.r,backupColor.b,backupColor.g,backupColor.a/3));
+        grid.draw(window,projectionBlock,currentPosition);
+
+        //Restore block color and position.
+        block.setFillColor(backupColor);
+        currentPosition = backupPosition;
+    }
 }
 void tetris::Game::resetTimers()
 {

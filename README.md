@@ -17,8 +17,6 @@ TODO list:
 
 	Make game faster as user's score increases.
 	Add sprites, background color, music.
-	
-	Project drop location.
 
 	Show reserved block.
 

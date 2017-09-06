@@ -15,7 +15,7 @@ namespace tetris
         sf::RenderWindow window;//The window
         sf::RectangleShape block;//The base single block
         sf::Vector2<int> currentMove, currentPosition, gridSize;//Current move, position and the grid size.
-        std::vector<std::vector<sf::RectangleShape*> > currentBlock;//Current multiple-blocks being used.
+        std::vector<std::vector<sf::RectangleShape*> > currentBlock;//multiple-blocks being used.
         unsigned int currentBlockType, currentBlockState;//variables holding block type and block state.
         mu::MyRandom myRandom;//My random class declaration.
         tetris::Grid grid;//Grid class declaration.
@@ -42,6 +42,7 @@ namespace tetris
         void setup();//This function holds the default setups for the window and timers.
         void swapBlock();//This function swaps the block with a reserve block. If not reserve, simply reserver and create new block.
         void resetTimers();//Reset Timers.
+        void projection();//Calculates the projection of the current block.
     public:
         Game(sf::Vector2i gridSize = sf::Vector2i(10,24), bool running = true);//Initializes grid and calls run.
         ~Game();//Prints score to the console on close/gameOver.
