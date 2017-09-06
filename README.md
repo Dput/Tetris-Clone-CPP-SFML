@@ -2,6 +2,8 @@
 Simple Tetris clone using c++ and SFML.
 SFML version 2.4.2, and compliant to c++ 14.
 
+Give me idea's by modifying the TODO List, relavent ideas please.
+ScreenShot below.
 
 Controls:
 
