@@ -2,7 +2,6 @@
 Simple Tetris clone using c++ and SFML.
 SFML version 2.4.2, and compliant to c++ 14.
 
-![Alt text](/screenShots/tetrisClone.PNG?raw=true "Tetris Clone")
 
 Controls:
 
@@ -14,6 +13,8 @@ Controls:
 	'z' key: Rotates block counter-clockwise.
 	'a' || 's' key: Store/Swich block.
 	
+![Alt text](/screenShots/tetrisClone.PNG?raw=true "Tetris Clone")
+
 TODO list:
 
 
