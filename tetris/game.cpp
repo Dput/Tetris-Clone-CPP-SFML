@@ -450,7 +450,6 @@ void tetris::Game::setup()//This function holds the default setups for the windo
     fallFrames.reset(1);//Reset timer object for fall to ? action per second.
     flipFrames.reset(5);//Reset timer object for flip to ? action per second.
     forceFrames.reset(2);//Reset timer object for forceFall to ? actions per second.
-
     swapFrames.reset(1);//Resets timer for swapFrame.
 
     setPrint();
@@ -458,6 +457,17 @@ void tetris::Game::setup()//This function holds the default setups for the windo
     forceFall = false;
     swapBool = true;
     createBlock();
+}
+void tetris::Game::resetTimers()
+{
+    //Reset all times:
+    totalFrames.reset();
+    updateFrames.reset();
+    drawFrames.reset();
+    fallFrames.reset();
+    flipFrames.reset();
+    forceFrames.reset();
+    swapFrames.reset();
 }
 tetris::Game::Game(sf::Vector2i gridSize, bool running)//Initializes grid and calls run.
 {
@@ -537,6 +547,7 @@ void tetris::Game::swapBlock()
         }
         //Reset block position on swapping.
         currentPosition = sf::Vector2<int>(myRandom.get(1,gridSize.x-5),0);
+        resetTimers();
         swapBool = false;
     }
 }
