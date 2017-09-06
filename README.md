@@ -13,7 +13,9 @@ Controls:
 	'z' key: Rotates block counter-clockwise.
 	'a' || 's' key: Store/Swich block.
 	
-![Alt text](/screenShots/tetrisClone.PNG?raw=true "Tetris Clone")
+
+
+![Alt text](/screenShots/tetrisClone.png?raw=true "Tetris Clone")
 
 TODO list:
 
