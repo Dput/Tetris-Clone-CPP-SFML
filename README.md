@@ -2,7 +2,6 @@
 Simple Tetris clone using c++ and SFML.
 SFML version 2.4.2, and compliant to c++ 14.
 
-Give me idea's by modifying the TODO List, relavent ideas please.
 ScreenShot below.
 
 Controls:
@@ -19,16 +18,3 @@ Controls:
 
 ![Alt text](/screenShots/tetrisClone.png?raw=true "Tetris Clone")
 
-TODO list:
-
-
-	Make game faster as user's score increases.
-	Add sprites, background color, music.
-
-	Show reserved block.
-
-	Show upcomming blocks.
-
-
-	(an more...)
-	
