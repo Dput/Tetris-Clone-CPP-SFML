@@ -5,6 +5,11 @@
 #	Afterwards you can either run this makefile in the msys shell or if you have both msys and gnu-make in the windows path you can call
 #	'make' at the cmdpromt in this directory to create the executable.
 #	Make sure to adjust the SFMLINCLUDES and SFMLLIBPATH path to your own, you must have SFML installed to compile this.
+#
+#	Warning! If you've added msys to your windows path, note that cmake projects usually do not like this
+#		so removing msys from the windows path is expected after compiling this project.
+#		If you choose to leave msys in the path, just know that cmake may inform you of an error if you're
+#		using cmake with "sh.exe". It'll tell you if you read.
 
 #It code should work with linux with a bit of fixing. SFMLINCLUDES is pointing to a windows path, change it to the appropriate linux path of SFML's INCLUDE FILES.
 #	The SFMLLIBPATH will also need to be redirected to the appropriate path.
